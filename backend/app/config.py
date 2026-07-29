@@ -79,8 +79,8 @@ CONTACT: dict[str, str] = {
 
 # ── Qdrant ────────────────────────────────────────────────────────────
 QDRANT_URL: str        = os.getenv("QDRANT_URL", "http://localhost:6333")
+QDRANT_API_KEY: str    = os.getenv("QDRANT_API_KEY", "")
 QDRANT_COLLECTION: str = "all_websites"
-
 # ── Embedding Model ───────────────────────────────────────────────────
 EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
 EMBEDDING_DIM:   int = 384
@@ -96,6 +96,6 @@ RAG_CONFIDENCE_LOW:  float = 0.35
 
 # ── Groq LLM ──────────────────────────────────────────────────────────
 GROQ_API_KEY: str      = os.getenv("GROQ_API_KEY", "")
-GROQ_MODEL: str        = os.getenv("GROQ_MODEL", "llama3-8b-8192")
+GROQ_MODEL: str        = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
 LLM_TEMPERATURE: float = 0.2
 LLM_MAX_RETRIES: int   = 1   # retry once on rate limit / transient failure

@@ -18,26 +18,22 @@ connection consumes memory). One shared client handles all requests.
 
 import logging
 from qdrant_client import QdrantClient
-from app.config import QDRANT_URL
+from app.config import QDRANT_URL, QDRANT_API_KEY
 
 logger = logging.getLogger(__name__)
 
-# Module-level variable — initialized once, reused forever
 _client: QdrantClient | None = None
 
 
 def get_qdrant_client() -> QdrantClient:
-    """
-    Return the shared Qdrant client, creating it if not yet initialized.
-    Thread-safe for FastAPI's async context.
-    """
     global _client
 
     if _client is None:
         logger.info("Initializing Qdrant client at %s", QDRANT_URL)
         _client = QdrantClient(
             url     = QDRANT_URL,
-            timeout = 30,    # seconds before a query times out
+            api_key = QDRANT_API_KEY,
+            timeout = 30,
         )
         logger.info("Qdrant client initialized")
 
